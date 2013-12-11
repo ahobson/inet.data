@@ -209,7 +209,7 @@ provided."
   ([child] (domain-ancestors child nil))
   ([child parent]
      (->> (iterate #(domain-next child %) parent) (drop 1)
-          (take-while identity))))
+          (take-while #(domain-hostname? % true)))))
 
 (defn domain-parent
   "Return the domain for which `dom` is an immediate sub-domain."
